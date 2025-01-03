@@ -8,8 +8,6 @@ const connectToDb = require("./db/db");
 const userRoutes = require("./routes/user.routes");
 const captainRoutes = require("./routes/captain.routes");
 
-app.use("/users", userRoutes);
-
 connectToDb();
 
 app.use(cors());
