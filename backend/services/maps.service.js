@@ -59,7 +59,33 @@ const getDistanceTime = async (origin, destination) => {
   }
 };
 
+const getAutoCompleteSuggestions = async (input) => {
+  if (!input) {
+    throw new Error("query is required");
+  }
+
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+    input
+  )}`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: { "User-Agent": "YourAppName" },
+    });
+    console.log(response.data);
+    if (response.data.length > 0) {
+      return response.data.map((place) => place.display_name).slice(0, 5);
+    } else {
+      throw new Error("No suggestions found");
+    }
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
 module.exports = {
   getAddressCoordinate,
   getDistanceTime,
+  getAutoCompleteSuggestions,
 };
