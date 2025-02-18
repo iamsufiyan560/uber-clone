@@ -192,6 +192,7 @@ const Home = () => {
         <ConfirmRide
           setConfirmRidePanel={setConfirmRidePanel}
           setVehicleFound={setVehicleFound}
+          setWaitingForDriver={setWaitingForDriver}
         />
       </div>
 
